@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="projects.css">
+    <title>flexpage</title>
+    <script>
+        // The debounce function receives our function as a parameter
+        const debounce = (fn) => {
+
+        // This holds the requestAnimationFrame reference, so we can cancel it if we wish
+        let frame;
+
+        // The debounce function returns a new function that can receive a variable number of arguments
+        return (...params) => {
+        
+        // If the frame variable has been defined, clear it now, and queue for next frame
+        if (frame) { 
+            cancelAnimationFrame(frame);
+        }
+
+        // Queue our function call for the next frame
+        frame = requestAnimationFrame(() => {
+            
+            // Call our function and pass any params we received
+            fn(...params);
+        });
+
+        } 
+        };
+
+
+        // Reads out the scroll position and stores it in the data attribute
+        // so we can use it in our stylesheets
+        const storeScroll = () => {
+        document.documentElement.dataset.scroll = window.scrollY;
+        }
+
+        // Listen for new scroll events, here we debounce our `storeScroll` function
+        document.addEventListener('scroll', debounce(storeScroll), { passive: true });
+
+        // Update scroll position for first time
+        storeScroll();
+    </script>
+</head>
+
+<header>
+    <a id="logo" href="#">flex<br>web</a>
+    <nav>
+        <a href="index.html">home</a>
+        <a href="projects.html">projects</a>
+    </nav>
+</header>
+
+<body>
+    <svg id="triangle" viewBox="0 0 20 20" onclick="location.href='#games';">
+        <polygon points="10 20, 20 0, 0 0"/>
+    </svg>
+    <div id="start_page"> 
+        <h1>
+            My projects
+        </h1> 
+    </div>
+    <div class="content"> 
+        <div class="sep_cont">
+            <video class="separator" src="0000-0250.webm" autoplay muted loop>
+        </div>
+        <div class="section">
+            <h1 class="sect_title">games</h1>
+            <div class="flex_cont" id="1">
+                <div class="project_panel">
+                    <img src="fract_cover.png" alt="">
+                    <div class="card">
+                        <div>
+                            <h1>FracTime</h1>
+                            <h3>Puzzel game</h3>
+                        </div>
+                        <p>a portal style game with time travel as the main mechanic </p>
+                        <a class="link_btn" href="https://blured-games.itch.io/fractime"><img src="itch_logo.svg" ></a>
+                    </div>
+                </div>
+                <div class="project_panel">
+                    <img src="pmind_cover.png" alt="">
+                    <div class="card">
+                        <div>
+                            <h1>PrograMind</h1>
+                            <h3>Quiz game</h3>
+                        </div>
+                        <p>a question game with a lot of finals depending on your knowledge </p>
+                        <a class="link_btn" href="https://blured-games.itch.io/programind"><img src="itch_logo.svg" ></a>
+                    </div>
+                </div>
+                <div class="project_panel">
+                    <img src="space_cover.png" alt="">
+                    <div class="card">
+                        <div>
+                            <h1>space war 2D</h1>
+                            <h3>retro ship game</h3>
+                        </div>
+                        <p>a simple 2D infinite shooter similar to the classic ones</p>
+                        <p>made in a day</p>
+                        <a class="link_btn" href="https://blured-games.itch.io/space-war"><img src="itch_logo.svg" ></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="section">
+            <h1 class="sect_title">pages</h1>
+            <div class="flex_cont" id="2">
+                <div class="project_panel">
+                    <img src="rc_cover.jpg" alt="">
+                    <div class="card">
+                        <div>
+                            <h1>Rincon cocinero</h1>
+                            <h3>web page</h3>
+                        </div>
+                        <p>a cooking page where you can upload recipes</p>
+                        <a class="link_btn" href="https://rinconcocinero.000webhostapp.com/index.php"><img src="web_logo.png" ></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h1 class="sect_title">blender</h1>
+            <div class="slider_cont">
+                <div class="slider">
+                    <img class="slider_img" id="slider_1" src="bikes.png">
+                    <img class="slider_img" id="slider_2" src="inear.png">
+                    <img class="slider_img" id="slider_3" src="rubik.jpg">
+                </div>
+                <div class="slider_nav_cont">
+                    <nav>
+                        <div>
+                            <input type="radio" name="image" class="slider_btn" onclick="location.href='#slider_1';"></a>
+                            <input type="radio" name="image" class="slider_btn" onclick="location.href='#slider_2';"></a>
+                            <input type="radio" name="image" class="slider_btn" onclick="location.href='#slider_3';"></a>
+                        </div>        
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>flex-web</title>
+    <script>
+        // The debounce function receives our function as a parameter
+        const debounce = (fn) => {
+
+        // This holds the requestAnimationFrame reference, so we can cancel it if we wish
+        let frame;
+
+        // The debounce function returns a new function that can receive a variable number of arguments
+        return (...params) => {
+        
+        // If the frame variable has been defined, clear it now, and queue for next frame
+        if (frame) { 
+            cancelAnimationFrame(frame);
+        }
+
+        // Queue our function call for the next frame
+        frame = requestAnimationFrame(() => {
+            
+            // Call our function and pass any params we received
+            fn(...params);
+        });
+
+        } 
+        };
+
+
+        // Reads out the scroll position and stores it in the data attribute
+        // so we can use it in our stylesheets
+        const storeScroll = () => {
+        document.documentElement.dataset.scroll = window.scrollY;
+        }
+
+        // Listen for new scroll events, here we debounce our `storeScroll` function
+        document.addEventListener('scroll', debounce(storeScroll), { passive: true });
+
+        // Update scroll position for first time
+        storeScroll();
+    </script>
+</head>
+
+<header>
+    <a id="logo" href="#">flex<br>web</a>
+    <nav>
+        <a href="index.html">home</a>
+        <a href="projects.html">projects</a>
+    </nav>
+</header>
+
+<body>
+    <svg id="triangle" viewBox="0 0 80 80" onclick="location.href='#games';">
+        <polygon points="40 80, 80 0, 0 0"/>
+    </svg>
+    <div id="start_page"> 
+        <h1>
+            home-page
+        </h1> 
+    </div>
+<div class="content">
+    <div class="sep_cont">
+        <video class="separator" src="0000-0250.webm" autoplay muted loop></video>
+    </div>
+    <div id="games"> </div>
+    <div class="section">
+        <h1 class="sect_title">about-me</h1>
+        <div class="flex_cont" id="1">
+            <div class="panel_cont">
+                <div class="panel">
+                    <h1 class="panel_text">me</h1>
+                </div>
+                <div class="panel_back">
+                    <h1 class="panel_back_text">me</h1>
+                    <p>
+                        i am <a class="highlight">franco campillay</a> 
+                        and i am from 
+                        <a class="highlight">Cordoba/Argentina</a>
+
+                    </p>
+                </div>
+            </div>
+            
+            <div class="panel_cont">
+                <div class="panel">
+                    <h1 class="panel_text">education</h1>
+                </div>
+                <div class="panel_back">
+                    <h1 class="panel_back_text">education</h1>
+                </div>
+            </div>
+                    
+            <div class="panel_cont">
+                <div class="panel">
+                    <h1 class="panel_text">courses</h1>
+                </div>
+                <div class="panel_back">
+                    <h1 class="panel_back_text">courses</h1>
+                </div>
+            </div>
+
+            <div class="panel_cont">
+                <div class="panel">
+                    <h1 class="panel_text">skills</h1>
+                </div>
+                <div class="panel_back">
+                    <h1 class="panel_back_text">skills</h1>
+                    <div class="bars">
+                        <div class="bar_cont">
+                            <a class="progress_text"> Html <progress class="bar" value="90" max="100"></progress> </a>
+                        </div>
+                        <div class="bar_cont">
+                            <a class="progress_text"> Css <progress class="bar" value="75" max="100"></progress> </a>
+                        </div>
+                        <div class="bar_cont">
+                            <a class="progress_text"> Python <progress class="bar" value="90" max="100"></progress> </a>
+                        </div>
+                        <div class="bar_cont">
+                            <a class="progress_text"> Godot<progress class="bar" value="50" max="100"></progress> </a>
+                        </div>
+                        <div class="bar_cont">
+                            <a class="progress_text"> Shaders <progress class="bar" value="25" max="100"></progress> </a>
+                        </div>
+                        <div class="bar_cont">
+                            <a class="progress_text"> Blender <progress class="bar" value="85" max="100"></progress> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
